@@ -48,7 +48,5 @@ public class Hand {
 	public void setRundeNr(int rundeNr) {
 		this.rundeNr = rundeNr;
 	}
-	
-	
 
 }

@@ -1,16 +1,18 @@
 package no.hvl.dat109.app;
 
+import no.hvl.dat109.database.Bruker;
+
 public class Tilskuer extends Bruker {
 
 	public Spill spill;
 
 	public Tilskuer() {
-		super("", "", "", "");
+		super();
 
 	}
 
 	public Tilskuer(String navn, String brukernavn, String Epost, String passord, Spill spill) {
-		super(navn, brukernavn, Epost, passord);
+		super();
 		this.spill = spill;
 	}
 
