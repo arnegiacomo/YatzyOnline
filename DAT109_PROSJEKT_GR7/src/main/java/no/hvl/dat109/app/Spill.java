@@ -1,5 +1,6 @@
 package no.hvl.dat109.app;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +27,9 @@ public class Spill {
 	}
 
 	public static Map<Integer, Spill> getSpill() {
+		if(spill == null) {
+			spill = new HashMap<Integer, Spill>();
+		}
 		return spill;
 	}
 
