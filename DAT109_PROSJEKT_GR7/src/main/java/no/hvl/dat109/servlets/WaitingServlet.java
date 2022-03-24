@@ -1,24 +1,25 @@
-package no.hvl.dat109.mypackage;
+package no.hvl.dat109.servlets;
 
 import java.io.IOException;
-
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/hello")
-public class IndexServlet extends HttpServlet {
+/**
+ * Servlet implementation class WaitingServlet
+ */
+@WebServlet(name = "WaitingServlet", urlPatterns = "/waiting")
+public class WaitingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	@EJB DAO dao;
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		dao.getAll().forEach(o -> System.out.println(o.toString()));
-		request.getRequestDispatcher("WEB-INF/hello.jsp")
-		.forward(request, response);
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("WEB-INF/waiting.jsp")
+		.forward(request, response);
 	}
 
 }

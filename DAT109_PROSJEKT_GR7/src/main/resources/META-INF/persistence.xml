@@ -10,7 +10,7 @@
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<jta-data-source>DataSource</jta-data-source>
 		
-		<class>no.hvl.dat109.mypackage.TABELL</class>
+		<class>no.hvl.dat109.database.Bruker</class>
 		
 		<properties>
 			<property name="eclipselink.weaving" value="false" />
