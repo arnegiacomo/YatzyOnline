@@ -1,4 +1,4 @@
-package no.hvl.dat109.innlogging;
+package no.hvl.dat109.utils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

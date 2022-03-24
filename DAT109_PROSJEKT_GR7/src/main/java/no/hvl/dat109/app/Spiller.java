@@ -8,7 +8,6 @@ public class Spiller extends Bruker {
 
 	public Spiller() {
 		super();
-
 	}
 
 	public Spiller(String navn, String brukernavn, String Epost, String passord, Spill spill) {

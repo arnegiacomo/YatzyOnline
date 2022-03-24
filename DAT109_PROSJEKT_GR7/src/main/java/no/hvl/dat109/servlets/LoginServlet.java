@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat109.database.Bruker;
 import no.hvl.dat109.database.BrukerDAO;
-import no.hvl.dat109.innlogging.InnloggingUtils;
+import no.hvl.dat109.utils.InnloggingUtils;
 
 /**
  * 

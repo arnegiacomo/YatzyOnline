@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Spill {
 
-	public static Map<Spiller, Poengtabell> spill;
+	public static Map<Integer, Spill> spill;
 
 	public int ID;
 
@@ -17,8 +17,7 @@ public class Spill {
 
 	public int runderSpilt;
 	
-	public Spill(Map<Spiller, Poengtabell> spill, int ID, Admin admin, List<Spiller> spillere, int starttid, int runderSpilt) {
-		Spill.spill = spill;
+	public Spill(int ID, Admin admin, List<Spiller> spillere, int starttid, int runderSpilt) {
 		this.ID = ID;
 		this.admin = admin;
 		this.spillere = spillere;
@@ -26,11 +25,11 @@ public class Spill {
 		this.runderSpilt = runderSpilt;
 	}
 
-	public static Map<Spiller, Poengtabell> getSpill() {
+	public static Map<Integer, Spill> getSpill() {
 		return spill;
 	}
 
-	public static void setSpill(Map<Spiller, Poengtabell> spill) {
+	public static void setSpill(Map<Integer, Spill> spill) {
 		Spill.spill = spill;
 	}
 

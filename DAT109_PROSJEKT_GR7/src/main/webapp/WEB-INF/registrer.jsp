@@ -10,17 +10,20 @@
         
         <h2>Register</h2><br>
         
-        <input type="text" placeholder="Email" name="email" id="email" required><br>
+        <form action="registrer" method="post">
         
-        <input type="password" placeholder="Password" name="psw" required><br>
-        
-        <input type="text" placeholder="Username" name="uname" required><br>
-        
-        <input type="text" placeholder="Name" name="name" required><br>
-        
-        
-        <button type="submit">Register</button><br>
+	        <input type="text" placeholder="Email" name="email" id="email" required><br>
+	        
+	        <input type="password" placeholder="Password" name="psw" required><br>
+	        
+	        <input type="text" placeholder="Username" name="uname" required><br>
+	        
+	        <input type="text" placeholder="Name" name="name" required><br>
+	        
+	        
+	        <button type="submit">Register</button><br>
     
+    	</form>
     </div>
 </body>
 </html>

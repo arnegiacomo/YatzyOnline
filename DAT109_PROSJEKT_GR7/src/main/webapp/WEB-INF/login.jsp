@@ -11,6 +11,7 @@
         <h2>Login</h2><br>
         
         <form action="login" method="post">
+        
         	<p>
 				<font color="red">${FEILMELDING}</font>
 			</p>

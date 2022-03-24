@@ -20,5 +20,17 @@ public class BrukerDAO {
 		List<Bruker> all = em.createQuery("select m from Bruker m", Bruker.class).getResultList();
 		return all;
 	}
+	
+	/**
+	 * Persister ny bruker i databasen
+	 * 
+	 * @param epost
+	 * @param passord
+	 * @param brukernavn
+	 * @param navn
+	 */
+	public void leggTilBruker(Bruker nyBruker) {
+		em.persist(nyBruker);
+	}
 
 }
