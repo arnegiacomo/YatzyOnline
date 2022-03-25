@@ -14,7 +14,7 @@
         
         <button type="submit">Roll Dice</button>
         
-        <h4>Click a dice to keep it</h4>
+        <h4>Click the dice you want to roll again</h4>
         
         <img src="/images/face1.png">
         <img src="/images/face2.png">

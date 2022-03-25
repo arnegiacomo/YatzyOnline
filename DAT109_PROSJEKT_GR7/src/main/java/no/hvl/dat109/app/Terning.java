@@ -7,7 +7,7 @@ public class Terning {
 	public int faceValue;
 
 	public Terning() {
-		faceValue = 1;
+		faceValue = 0;
 	}
 
 	public int roll() {
