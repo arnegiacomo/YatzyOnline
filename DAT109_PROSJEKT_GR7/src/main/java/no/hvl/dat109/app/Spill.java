@@ -26,6 +26,10 @@ public class Spill {
 		this.runderSpilt = runderSpilt;
 	}
 
+	/**
+	 * Hente liste av alle pågående spill, hvis det er ingen initialisert lag en ny liste
+	 * @return
+	 */
 	public static Map<Integer, Spill> getSpill() {
 		if(spill == null) {
 			spill = new HashMap<Integer, Spill>();
