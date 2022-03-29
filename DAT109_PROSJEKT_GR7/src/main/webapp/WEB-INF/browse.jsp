@@ -34,8 +34,11 @@
         	</c:forEach>
         </table>
 
-        <button type="submit">New game</button>
-        
+		<form action="">
+		
+       		<button type="submit">New game</button>
+       		s
+        </form>
         
         
     </div>

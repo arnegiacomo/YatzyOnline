@@ -1,5 +1,6 @@
 package no.hvl.dat109.app;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,10 +19,10 @@ public class Spill {
 
 	public int runderSpilt;
 	
-	public Spill(int ID, Admin admin, List<Spiller> spillere, int starttid, int runderSpilt) {
+	public Spill(int ID, Admin admin, int starttid, int runderSpilt) {
 		this.ID = ID;
 		this.admin = admin;
-		this.spillere = spillere;
+		this.spillere = new ArrayList<Spiller>();
 		this.starttid = starttid;
 		this.runderSpilt = runderSpilt;
 	}

@@ -16,7 +16,7 @@
         
         <h4>Click the dice you want to roll again</h4>
         
-        <img src="/images/face1.png">
+        <img src="img/face1.png">
         <img src="/images/face2.png">
         <img src="/images/face5.png">
         <img src="/images/face3.png">

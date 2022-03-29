@@ -30,10 +30,10 @@ public class BrowseServlet extends HttpServlet {
 		
 		//TODO midlertidig
 		HashMap<Integer, Spill> spill = new HashMap<Integer, Spill>();
-		spill.put(0, new Spill(0, null, null, 0, 0));
-		spill.put(1, new Spill(1, null, null, 0, 0));
-		spill.put(2, new Spill(2, null, null, 0, 0));
-		spill.put(3, new Spill(3, null, null, 0, 0));
+		spill.put(0, new Spill(0, null, 0, 0));
+		spill.put(1, new Spill(1, null, 0, 0));
+		spill.put(2, new Spill(2, null, 0, 0));
+		spill.put(3, new Spill(3, null, 0, 0));
 		
 		Spill.setSpill(spill);
 		request.setAttribute("spill", new ArrayList(Spill.getSpill().values()));
