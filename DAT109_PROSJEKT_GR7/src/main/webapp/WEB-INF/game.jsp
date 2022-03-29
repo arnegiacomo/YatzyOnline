@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
+	<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -9,18 +13,20 @@
 	<div class="game">
         
         <h2>Yatzy</h2><br>
+        <h5> Spill ID : ${spill.getID()} </h5>
+        <p>Admin: ${spill.getAdmin().getBrukernavn()}</p>
         
         <hr><br>
         
         <button type="submit">Roll Dice</button>
         
-        <h4>Click the dice you want to roll again</h4>
+        <h4>Click the dice you want to keep</h4>
         
         <img src="img/face1.png">
-        <img src="/images/face2.png">
-        <img src="/images/face5.png">
-        <img src="/images/face3.png">
-        <img src="/images/face1.png">
+        <img src="img/face2.png">
+        <img src="img/face3.png">
+        <img src="img/face4.png">
+        <img src="img/face5.png">
         
         <table width="482">
         <tbody>

@@ -19,11 +19,13 @@ public class Spiller {
 	 * Ikke rør!
 	 */
 	public void setSpill(Spill spill) {
+		Spill.fjernSpillerFraAlleSpill(this);
 		this.spill = spill;
 	}
 	
 	public void ForlatSpill() {
-		
+		Spill.fjernSpillerFraAlleSpill(this);
+		this.spill = null;
 	}
 	
 	public int SpillRunde() {

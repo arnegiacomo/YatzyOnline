@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import no.hvl.dat109.app.Admin;
 import no.hvl.dat109.app.Spill;
@@ -16,7 +17,9 @@ import no.hvl.dat109.app.Tilskuer;
 import no.hvl.dat109.utils.InnloggingUtils;
 
 /**
- * Servlet implementation class WaitingServlet
+ * 
+ * @author arnemunthe-kaas
+ *
  */
 @WebServlet(name = "WaitingServlet", urlPatterns = "/waiting")
 public class WaitingServlet extends HttpServlet {
@@ -33,8 +36,14 @@ public class WaitingServlet extends HttpServlet {
 			.forward(request, response);
 			return;
 		}
-		
 		request.setAttribute("spill", this.spill);
+		
+		if(spill.startet()) {
+			response.sendRedirect("game");
+			return;
+		}
+		
+		
 		request.setAttribute("bruker", InnloggingUtils.getInnlogget(request));
 		
 	
@@ -44,12 +53,17 @@ public class WaitingServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// Meh dårlig kode fikse? TODO
+		// Meh dårlig kode fikse? TODO faen dette er den styggeste servleten gjennom tidene -arne
 		String create = req.getParameter("create");
 		
 		if(create != null && create.equals("new")){
-			Spill spill = new Spill(new Admin(InnloggingUtils.getInnlogget(req)));
+			Admin admin = new Admin(InnloggingUtils.getInnlogget(req));
+			Spill spill = new Spill(admin);
 			this.spill = spill;
+			
+			HttpSession session = req.getSession(false);
+			session.setAttribute("spill", spill);
+			
 			doGet(req, resp);
 			return;
 		}
@@ -58,8 +72,13 @@ public class WaitingServlet extends HttpServlet {
 		
 		if(join != null){
 			Spill spill = Spill.getSpillFraID(Integer.parseInt(join));
+		
 			spill.join(new Spiller(InnloggingUtils.getInnlogget(req)));
 			this.spill = spill;
+			
+			HttpSession session = req.getSession(false);
+			session.setAttribute("spill", spill);
+			
 			doGet(req, resp);
 			return;
 		}
@@ -70,10 +89,25 @@ public class WaitingServlet extends HttpServlet {
 			Spill spill = Spill.getSpillFraID(Integer.parseInt(spectate));
 			spill.spectate(new Tilskuer(InnloggingUtils.getInnlogget(req)));
 			this.spill = spill;
+			
+			HttpSession session = req.getSession(false);
+			session.setAttribute("spill", spill);
+			
 			doGet(req, resp);
 			return;
 		}
 		
+		String start = req.getParameter("start");
+		
+		if(start != null) {
+			spill.start();
+			resp.sendRedirect("game");
+		}
+		
+		
+		
+		//  TODO feilhåndtering?
+				
 	}
 
 }

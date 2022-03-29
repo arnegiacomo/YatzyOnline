@@ -16,6 +16,7 @@ public class Spill {
 	public Map<String, Spiller> spillere;
 
 	private boolean startet = false;
+	private boolean slettes = false;
 	public int runderSpilt = -1;
 	
 	public Spill(Admin admin) {
@@ -31,6 +32,8 @@ public class Spill {
 	public void start() {
 		this.startet = true;
 		this.runderSpilt = 0; // ???????
+		
+		System.out.println(this.toString() + " har startet!");
 	}
 
 	/**
@@ -92,20 +95,50 @@ public class Spill {
 	public boolean startet() {
 		return startet;
 	}
+	
+	/**
+	 * Sletter et spill fra minnet
+	 */
+	public void slettSpill() {
+		spill.remove(this.ID);
+		this.slettes = true;
+	}
+	
+	/**
+	 * Fjerner en spiller, hvis det er eneste spiller eller admin, sletter spillet. faen dette er rotete -arne
+	 * @param spiller som skal fjernes
+	 */
+	public void fjernSpiller(Spiller spiller) {
+		if(this.admin.getEpost().equals(spiller.getEpost())) {
+			slettSpill();
+			
+			getSpillere().forEach(s -> s.ForlatSpill());
+			
+			return;
+		}
+		spillere.remove(spiller.getEpost());
+		spiller.ForlatSpill();
+		
+	}
 
 
 
 	/**
-	 * Legg til ny spiller i spillet, hvis bruker (spiller) med likt brukernavn allerede deltar skjer ingenting
+	 * Legg til ny spiller i spillet, hvis bruker (spiller) med likt brukernavn allerede deltar skjer ingenting. Hvis spillere = 6 aka spillet er fullt, returner
 	 * @param spiller som skal legges til
 	 */
 	public void join(Spiller spiller) {
+		
+		if(getSpillere().size() >= 6) {
+			return;
+		}
 		
 		for(int i = 0; i < getSpillere().size(); i++) {
 			if(getSpillere().get(i).getBrukernavn().equals(spiller.getBrukernavn()))
 				return;
 		}
 		
+		spiller.setSpill(this);
 		this.spillere.put(spiller.getEpost(), spiller);
 		
 	}
@@ -118,6 +151,41 @@ public class Spill {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	/**
+	 * Returnerer statusen til spillet
+	 * @return
+	 */
+	public String status() {
+		if(!startet) {
+			return "Ikke startet";
+		} else {
+			return "Spillet har startet! Runde: " + runderSpilt;
+		}
+	}
+	
+	/**
+	 * Rydde opp i ting
+	 * @param epost
+	 */
+	public static void fjernSpillerFraAlleSpill(Spiller spiller) {
+		List<Spill> spills = getSpill();
+		spills.forEach(s -> s.fjernSpiller(spiller));
+		spill = new ConcurrentHashMap<Integer, Spill>();
+		
+		spills.forEach(s -> {
+			if(!s.slettes)
+				spill.put(s.getID(), s);
+		});
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Spill [ID=" + ID + ", admin=" + admin + "]";
+	}
+	
+	
 	
 
 }

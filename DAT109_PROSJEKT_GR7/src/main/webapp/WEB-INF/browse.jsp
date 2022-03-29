@@ -15,16 +15,23 @@
         
         <hr><br>
         
-        <table>
+        <form action="waiting" method="post">
+		
+       		<button type="submit" name="create" value = "new">New game</button>
+       		
+        </form>
         
-       		 <c:forEach items='${requestScope["spill"]}' var="spill">
+        <h3> Spill som ikke har startet</h3>
+        <table>
+        		
+       		 <c:forEach items='${requestScope["ikkeStartet"]}' var="spill">
        		 
 	        	<tr class="browserUnit">
 		        	<td>
 		        		<h3> Spill ID : ${spill.getID()} </h3>
 		        		
 		            	<p>Players: ${spill.getSpillere().size()}/6</p>
-		            
+		            	<p>Status: ${spill.status()}</p>
 		            
 		            
 			            <form action="waiting" method="post">
@@ -44,14 +51,32 @@
 	        	
         	</c:forEach>
         </table>
-
-		<form action="waiting" method="post">
-		
-       		<button type="submit" name="create" value = "new">New game</button>
-       		
-        </form>
         
+        <h3> Spill som har startet</h3>
         
+        <table>
+        
+       		 <c:forEach items='${requestScope["startet"]}' var="spill">
+       		 
+	        	<tr class="browserUnit">
+		        	<td>
+		        		<h3> Spill ID : ${spill.getID()} </h3>
+		        		
+		            	<p>Players: ${spill.getSpillere().size()}/6</p>
+		            	<p>Status: ${spill.status()}</p>
+			             
+			             <form action="waiting" method="post">
+			             
+			            	<button type="submit" name="spectate" value="${spill.getID()}">Spectate game</button>
+			            	
+			            </form>
+		            
+		        	</td>
+	        	</tr>
+	        	
+        	</c:forEach>
+        </table>
+ 
     </div>
 </body>
 </html>

@@ -27,17 +27,21 @@ public class BrowseServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Spill> allespill = Spill.getSpill();
-		List<Spill> ikkeStartet = allespill.stream().filter(s -> s.startet()).collect(Collectors.toList());
-		
-		request.setAttribute("spill", ikkeStartet);
-		
 		if (!InnloggingUtils.isInnlogget(request)) {
 			request.setAttribute("FEILMELDING", "Du har blitt logget ut!");
 			request.getRequestDispatcher("WEB-INF/login.jsp")
 			.forward(request, response);
 			return;
 		}
+		
+		List<Spill> allespill = Spill.getSpill();
+		List<Spill> ikkeStartet = allespill.stream().filter(s -> !s.startet()).collect(Collectors.toList());
+		List<Spill> startet = allespill.stream().filter(s -> s.startet()).collect(Collectors.toList());
+		
+		request.setAttribute("ikkeStartet", ikkeStartet);
+		request.setAttribute("startet", startet);
+		
+		
 		
 		request.getRequestDispatcher("WEB-INF/browse.jsp")
 		.forward(request, response);

@@ -6,7 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import no.hvl.dat109.app.Spill;
+import no.hvl.dat109.database.Bruker;
 import no.hvl.dat109.utils.InnloggingUtils;
 
 /**
@@ -15,6 +18,7 @@ import no.hvl.dat109.utils.InnloggingUtils;
 @WebServlet(name = "GameServlet", urlPatterns = "/game")
 public class GameServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Spill spill; 
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -27,9 +31,15 @@ public class GameServlet extends HttpServlet {
 			return;
 		}
 		
+		HttpSession session = request.getSession(false);
+		this.spill = (Spill) session.getAttribute("spill");
+		
+		request.setAttribute("spill", spill);
+		
 		request.getRequestDispatcher("WEB-INF/game.jsp")
 		.forward(request, response);
 	}
+	
 
 
 
