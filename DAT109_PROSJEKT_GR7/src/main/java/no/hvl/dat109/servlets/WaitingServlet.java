@@ -63,6 +63,7 @@ public class WaitingServlet extends HttpServlet {
 			
 			HttpSession session = req.getSession(false);
 			session.setAttribute("spill", spill);
+			session.setAttribute("spiller", admin);
 			session.setAttribute("admin", admin);
 			
 			doGet(req, resp);
@@ -73,12 +74,13 @@ public class WaitingServlet extends HttpServlet {
 		
 		if(join != null){
 			Spill spill = Spill.getSpillFraID(Integer.parseInt(join));
-		
-			spill.join(new Spiller(InnloggingUtils.getInnlogget(req)));
+			Spiller spiller = new Spiller(InnloggingUtils.getInnlogget(req));
+			spill.join(spiller);
 			this.spill = spill;
 			
 			HttpSession session = req.getSession(false);
 			session.setAttribute("spill", spill);
+			session.setAttribute("spiller", spiller);
 			
 			doGet(req, resp);
 			return;

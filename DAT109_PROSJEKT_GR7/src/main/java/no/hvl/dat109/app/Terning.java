@@ -7,17 +7,13 @@ public class Terning {
 	public int faceValue;
 
 	public Terning() {
-		faceValue = 0;
+		this.faceValue = 0;
 	}
 
 	public int roll() {
 		faceValue = (int) (Math.random() * MAX) + 1;
 
 		return faceValue;
-	}
-
-	public void setFaceValue(int value) {
-		faceValue = value;
 	}
 
 	public int getFaceValue() {

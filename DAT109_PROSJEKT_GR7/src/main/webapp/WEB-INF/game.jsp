@@ -5,7 +5,7 @@
 	<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" http-equiv="refresh" content="3">
+<meta charset="UTF-8" http-equiv="refresh" content="10">
 <link rel="stylesheet" href="styles.css">
 <title>Yatzy</title>
 </head>
@@ -14,20 +14,37 @@
         
         <h2>Yatzy</h2><br>
         <h5> Spill ID : ${spill.getID()} </h5>
-        <p>Admin: ${spill.getAdmin().getBrukernavn()}</p>
+        <p>Aktiv Spiller: ${spill.getAktivSpiller().getBrukernavn()}</p>
         <p>Runder Spilt: ${spill.getRunderSpilt()}</p>
         
         <hr><br>
         
-        <button type="submit">Roll Dice</button>
+       
+        <c:if test="${sessionScope.spiller.getEpost().equals(spill.getAktivSpiller().getEpost())}">
         
-        <h4>Click the dice you want to keep</h4>
+        <h4>Click the dice you want to reroll</h4>
         
-        <img src="img/face1.png">
-        <img src="img/face2.png">
-        <img src="img/face3.png">
-        <img src="img/face4.png">
-        <img src="img/face5.png">
+        <p>Antall kast: ${spiller.getKast()}</p>
+        <img src="img/face${spiller.getHand()[0]}.png">
+        <img src="img/face${spiller.getHand()[1]}.png">
+        <img src="img/face${spiller.getHand()[2]}.png">
+        <img src="img/face${spiller.getHand()[3]}.png">
+        <img src="img/face${spiller.getHand()[4]}.png">
+
+		
+			<form action="game" method="post">
+		
+				  <input type="checkbox" id="t1" name="t1" value="t1">
+				  <input type="checkbox" id="t2" name="t2" value="t2">
+				  <input type="checkbox" id="t3" name="t3" value="t3">
+				  <input type="checkbox" id="t4" name="t4" value="t4">
+				  <input type="checkbox" id="t5" name="t5" value="t5">
+				  
+				  <br>
+				  
+				  <button type="submit">Roll Dice</button>
+			</form>
+		</c:if>
         
         
         <table width="482">
@@ -85,14 +102,14 @@
         <tr>
         <td><strong>SUM</strong></td>
         <c:forEach items='${spill.getSpillere()}' var="spiller">
-	        <td width="64">${spiller.getTabell().getSum1()}</td>
+	        <td width="64">${spiller.getTabell().ovrepoengsum()}</td>
         </c:forEach>
         </tr>
         
         <tr>
         <td><strong>BONUS</strong></td>
         <c:forEach items='${spill.getSpillere()}' var="spiller">
-	        <td width="64">${spiller.getTabell().getBonus()}</td>
+	        <td width="64">${spiller.getTabell().bonus()}</td>
         </c:forEach>
         </tr>
         
@@ -162,7 +179,7 @@
         <tr>
         <td><strong>TOTAL</strong></td>
         <c:forEach items='${spill.getSpillere()}' var="spiller">
-	        <td width="64">${spiller.getTabell().getSum()}</td>
+	        <td width="64">${spiller.getTabell().sluttresultat()}</td>
         </c:forEach>
         </tr>
         

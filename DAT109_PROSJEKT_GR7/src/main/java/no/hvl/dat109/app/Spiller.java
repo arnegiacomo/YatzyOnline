@@ -4,12 +4,15 @@ import no.hvl.dat109.database.Bruker;
 
 public class Spiller {
 
-	public Spill spill;
+	private Spill spill;
 	private Bruker bruker;
 	private Poengtabell tabell;
+	private int kast = 0;
+	private Terning[] terninger;
 
 	public Spiller(Bruker bruker) {
 		this.bruker = bruker;
+		this.terninger = new Terning[] {new Terning(), new Terning(), new Terning(), new Terning(), new Terning()};
 	}
 
 	public Spill getSpill() {
@@ -31,8 +34,35 @@ public class Spiller {
 		this.tabell = null;
 	}
 	
-	public int SpillRunde() {
-		return 0;
+	public void SpillRunde(boolean[] trill) {
+		if(kast == 0) {
+			terninger = new Terning[] {new Terning(), new Terning(), new Terning(), new Terning(), new Terning()};
+		}
+		
+		for (int i = 0; i < terninger.length; i++) {
+			if(trill[i])
+				terninger[i].roll();
+		}
+		
+		kast++;	
+		
+		if(kast == 3) {
+			tabell.leggInn(spill.getRunderSpilt(), terninger);
+			spill.spillRunde();
+			kast = 0;
+		}
+		
+	
+	}
+	
+	public int[] getHand() {
+		
+		
+		int[] tab = new int[terninger.length];
+		for(int i = 0; i < terninger.length; i++) {
+			tab[i] = terninger[i].getFaceValue();
+		}
+		return tab;
 	}
 
 	// Getters / Setters / toString
@@ -47,6 +77,10 @@ public class Spiller {
 
 	public Poengtabell getTabell() {
 		return tabell;
+	}
+	
+	public int getKast() {
+		return kast;
 	}
 
 	@Override

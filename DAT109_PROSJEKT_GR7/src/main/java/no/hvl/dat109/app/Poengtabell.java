@@ -2,65 +2,53 @@ package no.hvl.dat109.app;
 
 public class Poengtabell {
 
-	public int rundeNr;
-
 	public int[] resultater;
 
 	public Poengtabell() {
-		this.rundeNr = 0;
-		this.resultater = new int[]{1,2,3,4,5,6,21,50,12,22,18,24,28,15,21,50,99, 102309};
+		this.resultater = new int[18];
 	}
-
-	public int getRundeNr() {
-		return rundeNr;
-	}
-
-	public void setRundeNr(int rundeNr) {
-		this.rundeNr = rundeNr;
-	}
-
-	public int[] getResultater() {
-		return resultater;
-	}
-
-	public void setResultater(int[] resultater) {
-		this.resultater = resultater;
+	
+	public void leggInn(int rundeNr, Terning[] terninger) {
+		if(rundeNr < 7) 
+			resultater[rundeNr-1] = poeng(rundeNr, terninger);
+		if(rundeNr >= 7) 
+			resultater[rundeNr+1] = poeng(rundeNr, terninger);
 	}
 
 	public int sluttresultat() {
-		int poengsum = 0;
+		resultater[17] = 0;
 
 		for (int i = 0; i < resultater.length; i++) {
-			poengsum += resultater[i];
+			resultater[17] += resultater[i];
 		}
 
 		// Fjerner poengtotalen fra de 6 foerste rundene
-		poengsum = poengsum - resultater[6];
+		resultater[17] = resultater[17] - resultater[6];
 
-		return poengsum;
+		return resultater[17];
 	}
 
 	public int ovrepoengsum() {
 
-		int poengsum = 0;
+		resultater[6] = 0;
 
 		for (int i = 0; i < 6; i++) {
-			poengsum += resultater[i];
+			resultater[6] += resultater[i];
 		}
 
-		return poengsum;
+		return resultater[6];
 	}
 
 	public int bonus() {
 
-		if (resultater[7] >= 42) {
-			return 50;
+		if (ovrepoengsum() >= 42) {
+			resultater[7] = 50;
 		}
 
-		return 0;
+		return resultater[7];
 
 	}
-
+	
 	/**
 	 * Regner ut poengsummen for hver runde ut i fra hvilken runde det er
 	 * 
@@ -350,14 +338,6 @@ public class Poengtabell {
 		return resultater[5];
 	}
 	
-	public int getSum1() {
-		return resultater[6];
-	}
-	
-	public int getBonus() {
-		return resultater[7];
-	}
-	
 	public int get1Par() {
 		return resultater[8];
 	}
@@ -394,7 +374,4 @@ public class Poengtabell {
 		return resultater[16];
 	}
 	
-	public int getSum() {
-		return resultater[17];
-	}
 }

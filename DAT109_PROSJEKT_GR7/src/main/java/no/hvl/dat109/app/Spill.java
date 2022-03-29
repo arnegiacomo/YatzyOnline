@@ -19,14 +19,15 @@ public class Spill {
 	private boolean slettes = false;
 	public int runderSpilt = -1;
 	
-	public Spiller aktivspiller;
+	private Spiller aktivSpiller;
+	private int spillerIndex;
 	
 	/**
 	 * Opprette nytt spill, med en admin som eneste spiller. Legger spillet til i listen av spill
 	 * @param admin Spiller-object som administrerer spillet
 	 */
 	public Spill(Admin admin) {
-		this.ID = getSpill().size();
+		this.ID = getSpill().size() + 1;
 		this.admin = admin;
 		this.spillere = new ConcurrentHashMap<String, Spiller>();
 		spillere.put(admin.getEpost(),admin);
@@ -40,7 +41,27 @@ public class Spill {
 	 */
 	public void start() {
 		this.startet = true;
-		this.runderSpilt = 0; // ???????
+		this.runderSpilt = 1; // ???????
+		spillerIndex = 0;
+		this.aktivSpiller = getSpillere().get(0);
+	}
+
+	/**
+	 * Håndterer hvem sin runde det er
+	 */
+	public void spillRunde() {
+		spillerIndex ++;
+		if (spillerIndex >= getSpillere().size()) {
+			spillerIndex = 0;
+			runderSpilt++;
+		}
+		
+		aktivSpiller = getSpillere().get(spillerIndex);
+	}
+
+	private void ferdigGjor() {
+		// TODO Ferdiggjør spillet
+		
 	}
 
 	/**
@@ -72,8 +93,8 @@ public class Spill {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Hente spillets admin
+	 * @return spiller som administrerer dette spillet
 	 */
 	public Admin getAdmin() {
 		return admin;
@@ -87,14 +108,27 @@ public class Spill {
 		return new ArrayList(spillere.values());
 	}
 
+	/**
+	 * Hent rundenummer
+	 * @return rundenummer
+	 */
 	public int getRunderSpilt() {
 		return runderSpilt;
 	}
 	
-	private void InkrementerRunde() {
-		runderSpilt++;
+	/**
+	 * Hent den spilleren som har sin tur
+	 * @return
+	 */
+	public Spiller getAktivSpiller() {
+		return aktivSpiller;
 	}
-	
+
+
+	/**
+	 * Sjekker om spillet har startet
+	 * @return om spillet har startet
+	 */
 	public boolean startet() {
 		return startet;
 	}
