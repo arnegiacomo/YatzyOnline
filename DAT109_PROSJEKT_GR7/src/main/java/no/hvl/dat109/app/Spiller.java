@@ -33,5 +33,9 @@ public class Spiller {
 	public String getBrukernavn() {
 		return bruker.getBrukernavn();
 	}
+	
+	public String getEpost() {
+		return bruker.getEpost();
+	}
 
 }

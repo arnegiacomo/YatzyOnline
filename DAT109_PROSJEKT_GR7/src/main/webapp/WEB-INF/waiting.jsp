@@ -21,8 +21,9 @@
 	        <p>${bruker.getBrukernavn()}</p>
 	        <p>Admin: ${spill.getAdmin().getBrukernavn()}</p>
 	          
-	        <button type="submit">Start game</button>
-    	
+	        <form action="game">
+	        	<button type="submit">Start game</button>
+    		</form>
     </div>
 </body>
 </html>

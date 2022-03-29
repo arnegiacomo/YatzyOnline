@@ -27,5 +27,6 @@ public class Admin extends Spiller {
 	public void lagre() {
 		
 	}
+
 	
 }

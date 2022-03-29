@@ -13,33 +13,35 @@ public class Spill {
 
 	public Admin admin;
 
-	public List<Spiller> spillere;
+	public Map<String, Spiller> spillere;
 
-	public int starttid;
-
-	public int runderSpilt;
+	private boolean startet = false;
+	public int runderSpilt = -1;
 	
 	public Spill(Admin admin) {
 		this.ID = getSpill().size();
 		this.admin = admin;
-		this.spillere = new ArrayList<Spiller>();
-		spillere.add(admin);
-		this.starttid = (int) System.currentTimeMillis();
-		this.runderSpilt = 0;
+		this.spillere = new ConcurrentHashMap<String, Spiller>();
+		spillere.put(admin.getEpost(),admin);
 		
 		admin.setSpill(this);
 		spill.put(ID, this);
+	}
+	
+	public void start() {
+		this.startet = true;
+		this.runderSpilt = 0; // ???????
 	}
 
 	/**
 	 * Hente liste av alle pågående spill, hvis det er ingen initialisert lag en ny liste
 	 * @return alle spill i minnet
 	 */
-	public static Map<Integer, Spill> getSpill() {
+	public static List<Spill> getSpill() {
 		if(spill == null) {
 			spill = new ConcurrentHashMap<Integer, Spill>();
 		}
-		return spill;
+		return new ArrayList(spill.values());
 	}
 	
 	/**
@@ -68,19 +70,7 @@ public class Spill {
 	}
 
 	public List<Spiller> getSpillere() {
-		return spillere;
-	}
-
-	public void setSpillere(List<Spiller> spillere) {
-		this.spillere = spillere;
-	}
-
-	public int getStarttid() {
-		return starttid;
-	}
-
-	public void setStarttid(int starttid) {
-		this.starttid = starttid;
+		return new ArrayList(spillere.values());
 	}
 
 	public int getRunderSpilt() {
@@ -99,24 +89,29 @@ public class Spill {
 		
 	}
 	
-	
+	public boolean startet() {
+		return startet;
+	}
+
+
+
 	/**
-	 * Delta i spillet
-	 * @param spiller
+	 * Legg til ny spiller i spillet, hvis bruker (spiller) med likt brukernavn allerede deltar skjer ingenting
+	 * @param spiller som skal legges til
 	 */
 	public void join(Spiller spiller) {
 		
-		for(int i = 0; i < spillere.size(); i++) {
-			if(spillere.get(i).getBrukernavn().equals(spiller.getBrukernavn()))
+		for(int i = 0; i < getSpillere().size(); i++) {
+			if(getSpillere().get(i).getBrukernavn().equals(spiller.getBrukernavn()))
 				return;
 		}
 		
-		this.spillere.add(spiller);
+		this.spillere.put(spiller.getEpost(), spiller);
 		
 	}
 
 	/**
-	 * 
+	 * Legger til tilskuer til spillet
 	 * @param tilskuer
 	 */
 	public void spectate(Tilskuer tilskuer) {
