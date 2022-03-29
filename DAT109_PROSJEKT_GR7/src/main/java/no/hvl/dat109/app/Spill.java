@@ -21,6 +21,7 @@ public class Spill {
 	
 	private Spiller aktivSpiller;
 	private int spillerIndex;
+	private String winner;
 	
 	/**
 	 * Opprette nytt spill, med en admin som eneste spiller. Legger spillet til i listen av spill
@@ -50,6 +51,17 @@ public class Spill {
 	 * Håndterer hvem sin runde det er
 	 */
 	public void spillRunde() {
+		if(runderSpilt > 0) {
+			Spiller winner = getSpillere().get(0);
+			
+			for( int i = 0; i < getSpillere().size(); i++) {
+				if (getSpillere().get(i).getTabell().sluttresultat() > winner.getTabell().sluttresultat()) {
+					winner = getSpillere().get(i);
+				}
+			}
+			this.winner = winner.getBrukernavn();
+		}
+		
 		spillerIndex ++;
 		if (spillerIndex >= getSpillere().size()) {
 			spillerIndex = 0;
@@ -59,9 +71,8 @@ public class Spill {
 		aktivSpiller = getSpillere().get(spillerIndex);
 	}
 
-	private void ferdigGjor() {
-		// TODO Ferdiggjør spillet
-		
+	public String winner() {
+		return winner;
 	}
 
 	/**

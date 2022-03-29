@@ -57,7 +57,6 @@ public class Spiller {
 	
 	public int[] getHand() {
 		
-		
 		int[] tab = new int[terninger.length];
 		for(int i = 0; i < terninger.length; i++) {
 			tab[i] = terninger[i].getFaceValue();
