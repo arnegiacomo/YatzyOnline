@@ -33,13 +33,22 @@ public class Spill {
 
 	/**
 	 * Hente liste av alle pågående spill, hvis det er ingen initialisert lag en ny liste
-	 * @return
+	 * @return alle spill i minnet
 	 */
 	public static Map<Integer, Spill> getSpill() {
 		if(spill == null) {
 			spill = new ConcurrentHashMap<Integer, Spill>();
 		}
 		return spill;
+	}
+	
+	/**
+	 * Hente peker til et spill i minne basert på ID
+	 * @param ID - til spillet du leter etter
+	 * @return Spill peker
+	 */
+	public static Spill getSpillFraID(int ID) {
+		return spill.get(ID);
 	}
 
 	public int getID() {
@@ -87,6 +96,31 @@ public class Spill {
 	}
 	
 	private void InkrementerRunde() {
+		
+	}
+	
+	
+	/**
+	 * Delta i spillet
+	 * @param spiller
+	 */
+	public void join(Spiller spiller) {
+		
+		for(int i = 0; i < spillere.size(); i++) {
+			if(spillere.get(i).getBrukernavn().equals(spiller.getBrukernavn()))
+				return;
+		}
+		
+		this.spillere.add(spiller);
+		
+	}
+
+	/**
+	 * 
+	 * @param tilskuer
+	 */
+	public void spectate(Tilskuer tilskuer) {
+		// TODO Auto-generated method stub
 		
 	}
 	

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import no.hvl.dat109.app.Admin;
 import no.hvl.dat109.app.Spill;
+import no.hvl.dat109.app.Spiller;
+import no.hvl.dat109.app.Tilskuer;
 import no.hvl.dat109.utils.InnloggingUtils;
 
 /**
@@ -45,22 +47,31 @@ public class WaitingServlet extends HttpServlet {
 		// Meh dårlig kode fikse? TODO
 		String create = req.getParameter("create");
 		
-		if(create != null){
+		if(create != null && create.equals("new")){
 			Spill spill = new Spill(new Admin(InnloggingUtils.getInnlogget(req)));
 			this.spill = spill;
 			doGet(req, resp);
+			return;
 		}
 		
 		String join = req.getParameter("join");
 		
 		if(join != null){
-			
+			Spill spill = Spill.getSpillFraID(Integer.parseInt(join));
+			spill.join(new Spiller(InnloggingUtils.getInnlogget(req)));
+			this.spill = spill;
+			doGet(req, resp);
+			return;
 		}
 		
 		String spectate = req.getParameter("spectate");
 		
 		if(spectate != null){
-			
+			Spill spill = Spill.getSpillFraID(Integer.parseInt(spectate));
+			spill.spectate(new Tilskuer(InnloggingUtils.getInnlogget(req)));
+			this.spill = spill;
+			doGet(req, resp);
+			return;
 		}
 		
 	}

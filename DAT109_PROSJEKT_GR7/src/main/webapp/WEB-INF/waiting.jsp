@@ -19,7 +19,8 @@
          	
 	        <h1>Players: ${spill.getSpillere().size()}/6</h1>
 	        <p>${bruker.getBrukernavn()}</p>
-	       
+	        <p>Admin: ${spill.getAdmin().getBrukernavn()}</p>
+	          
 	        <button type="submit">Start game</button>
     	
     </div>

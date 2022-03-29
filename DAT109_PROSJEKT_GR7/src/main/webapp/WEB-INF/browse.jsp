@@ -47,7 +47,7 @@
 
 		<form action="waiting" method="post">
 		
-       		<button type="submit" name="create" value = " noe.... ">New game</button>
+       		<button type="submit" name="create" value = "new">New game</button>
        		
         </form>
         

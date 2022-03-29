@@ -14,11 +14,6 @@ import no.hvl.dat109.database.Bruker;
 import no.hvl.dat109.database.BrukerDAO;
 import no.hvl.dat109.utils.InnloggingUtils;
 
-/**
- * 
- * @author arnemunthe-kaas
- *
- */
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

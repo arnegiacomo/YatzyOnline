@@ -6,14 +6,8 @@ public class Tilskuer extends Bruker {
 
 	public Spill spill;
 
-	public Tilskuer() {
-		super();
+	public Tilskuer(Bruker bruker) {
 
-	}
-
-	public Tilskuer(String navn, String brukernavn, String Epost, String passord, Spill spill) {
-		super();
-		this.spill = spill;
 	}
 
 	public Spill getSpill() {
