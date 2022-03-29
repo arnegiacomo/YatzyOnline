@@ -6,9 +6,9 @@ public class Poengtabell {
 
 	public int[] resultater;
 
-	public Poengtabell(int rundeNr, int[] resultater) {
-		this.rundeNr = rundeNr;
-		this.resultater = resultater;
+	public Poengtabell() {
+		this.rundeNr = 0;
+		this.resultater = new int[]{1,2,3,4,5,6,21,50,12,22,18,24,28,15,21,50,99, 102309};
 	}
 
 	public int getRundeNr() {
@@ -70,7 +70,7 @@ public class Poengtabell {
 	public static int poeng(int rundeNr, Terning[] terninger) {
 		int score = 0, count = 0;
 
-		// Lagrer verdiene på terningene i en array
+		// Lagrer verdiene pï¿½ terningene i en array
 		int[] diceValues = new int[5];
 		for (int i = 0; i < 5; i++)
 			diceValues[i] = terninger[i].getFaceValue();
@@ -79,8 +79,10 @@ public class Poengtabell {
 		switch (rundeNr) {
 		case 1: // enere
 			for (int i = 0; i < 5; i++) {
-				if (diceValues[i] == 1)
+				if (diceValues[i] == 1) {
 					score += diceValues[i];
+				}
+					
 			}
 			break;
 
@@ -321,5 +323,78 @@ public class Poengtabell {
 			A[j + 1] = temp;
 		}
 	}
+	
+	// Gettere
+	
+	public int getEnere() {
+		return resultater[0];
+	}
+	
+	public int getToere() {
+		return resultater[1];
+	}
+	
+	public int getTrere() {
+		return resultater[2];
+	}
+	
+	public int getFirere() {
+		return resultater[3];
+	}
+	
+	public int getFemmere() {
+		return resultater[4];
+	}
+	
+	public int getSeksere() {
+		return resultater[5];
+	}
+	
+	public int getSum1() {
+		return resultater[6];
+	}
+	
+	public int getBonus() {
+		return resultater[7];
+	}
+	
+	public int get1Par() {
+		return resultater[8];
+	}
+	
+	public int get2Par() {
+		return resultater[9];
+	}
 
+	public int get3Like() {
+		return resultater[10];
+	}
+	
+	public int get4Like() {
+		return resultater[11];
+	}
+	
+	public int getHus() {
+		return resultater[12];
+	}
+	
+	public int getLiten() {
+		return resultater[13];
+	}
+	
+	public int getStor() {
+		return resultater[14];
+	}
+	
+	public int getYatzy() {
+		return resultater[15];
+	}
+	
+	public int getSjanse() {
+		return resultater[16];
+	}
+	
+	public int getSum() {
+		return resultater[17];
+	}
 }

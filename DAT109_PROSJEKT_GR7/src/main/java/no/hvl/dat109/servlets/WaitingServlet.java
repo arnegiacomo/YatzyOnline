@@ -63,6 +63,7 @@ public class WaitingServlet extends HttpServlet {
 			
 			HttpSession session = req.getSession(false);
 			session.setAttribute("spill", spill);
+			session.setAttribute("admin", admin);
 			
 			doGet(req, resp);
 			return;

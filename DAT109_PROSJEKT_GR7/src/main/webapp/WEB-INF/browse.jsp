@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" http-equiv="refresh" content="3">
 <link rel="stylesheet" href="styles.css">
 <title>Browse</title>
 </head>

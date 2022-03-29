@@ -9,7 +9,7 @@ public class Spill {
 
 	public static Map<Integer, Spill> spill;
 
-	public int ID;
+	public int ID; //TODO basere denne på alle spill spilt og ikke bare de i minnet
 
 	public Admin admin;
 
@@ -19,6 +19,12 @@ public class Spill {
 	private boolean slettes = false;
 	public int runderSpilt = -1;
 	
+	public Spiller aktivspiller;
+	
+	/**
+	 * Opprette nytt spill, med en admin som eneste spiller. Legger spillet til i listen av spill
+	 * @param admin Spiller-object som administrerer spillet
+	 */
 	public Spill(Admin admin) {
 		this.ID = getSpill().size();
 		this.admin = admin;
@@ -29,11 +35,12 @@ public class Spill {
 		spill.put(ID, this);
 	}
 	
+	/**
+	 * Starter et spill
+	 */
 	public void start() {
 		this.startet = true;
 		this.runderSpilt = 0; // ???????
-		
-		System.out.println(this.toString() + " har startet!");
 	}
 
 	/**
@@ -56,22 +63,26 @@ public class Spill {
 		return spill.get(ID);
 	}
 
+	/**
+	 * Hente ID til et spill
+	 * @return ID til spill
+	 */
 	public int getID() {
 		return ID;
 	}
 
-	public void setID(int iD) {
-		ID = iD;
-	}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public Admin getAdmin() {
 		return admin;
 	}
-
-	public void setAdmin(Admin admin) {
-		this.admin = admin;
-	}
-
+	
+	/**
+	 * Hente liste av alle spillere i et spill
+	 * @return
+	 */
 	public List<Spiller> getSpillere() {
 		return new ArrayList(spillere.values());
 	}
@@ -79,17 +90,9 @@ public class Spill {
 	public int getRunderSpilt() {
 		return runderSpilt;
 	}
-
-	public void setRunderSpilt(int runderSpilt) {
-		this.runderSpilt = runderSpilt;
-	}
-	
-	public int SluttResultat() {
-		return 0;
-	}
 	
 	private void InkrementerRunde() {
-		
+		runderSpilt++;
 	}
 	
 	public boolean startet() {
@@ -116,18 +119,20 @@ public class Spill {
 			
 			return;
 		}
-		spillere.remove(spiller.getEpost());
-		spiller.ForlatSpill();
-		
+		spillere.remove(spiller.getEpost());	
 	}
 
 
 
 	/**
-	 * Legg til ny spiller i spillet, hvis bruker (spiller) med likt brukernavn allerede deltar skjer ingenting. Hvis spillere = 6 aka spillet er fullt, returner
+	 * Legg til ny spiller i spillet, hvis bruker (spiller) med likt brukernavn allerede deltar skjer ingenting. 
+	 * Hvis spillere = 6 aka spillet er fullt eller spillet allerede har startet, returner
 	 * @param spiller som skal legges til
 	 */
 	public void join(Spiller spiller) {
+		if(startet) {
+			return;
+		}
 		
 		if(getSpillere().size() >= 6) {
 			return;
