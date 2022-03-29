@@ -53,7 +53,7 @@ public class Poengtabell {
 
 	public int bonus() {
 
-		if (resultater[6] >= 42) {
+		if (resultater[7] >= 42) {
 			return 50;
 		}
 
@@ -67,7 +67,7 @@ public class Poengtabell {
 	 * @param rundeNr terninger
 	 * @return - poengsummen for en runde
 	 */
-	private int poeng(int rundeNr, Terning[] terninger) {
+	public static int poeng(int rundeNr, Terning[] terninger) {
 		int score = 0, count = 0;
 
 		// Lagrer verdiene på terningene i en array
@@ -77,49 +77,49 @@ public class Poengtabell {
 
 		// Switch for hvert scenario
 		switch (rundeNr) {
-		case 0: // enere
+		case 1: // enere
 			for (int i = 0; i < 5; i++) {
 				if (diceValues[i] == 1)
 					score += diceValues[i];
 			}
 			break;
 
-		case 1: // toere
+		case 2: // toere
 			for (int i = 0; i < 5; i++) {
 				if (diceValues[i] == 2)
 					score += diceValues[i];
 			}
 			break;
 
-		case 2: // Treere
+		case 3: // Treere
 			for (int i = 0; i < 5; i++) {
 				if (diceValues[i] == 3)
 					score += diceValues[i];
 			}
 			break;
 
-		case 3: // firere
+		case 4: // firere
 			for (int i = 0; i < 5; i++) {
 				if (diceValues[i] == 4)
 					score += diceValues[i];
 			}
 			break;
 
-		case 4: // Femmere
+		case 5: // Femmere
 			for (int i = 0; i < 5; i++) {
 				if (diceValues[i] == 5)
 					score += diceValues[i];
 			}
 			break;
 
-		case 5: // Seksere
+		case 6: // Seksere
 			for (int i = 0; i < 5; i++) {
 				if (diceValues[i] == 6)
 					score += diceValues[i];
 			}
 			break;
 
-		case 8: /*
+		case 7: /*
 				 * 1 par
 				 */
 			for (int i = 6; i > 0; i--) {
@@ -137,7 +137,7 @@ public class Poengtabell {
 			}
 			break;
 
-		case 9: /*
+		case 8: /*
 				 * 2 par
 				 */
 			int pair = 0;
@@ -158,7 +158,7 @@ public class Poengtabell {
 				score = 0;
 			break;
 
-		case 10: /*
+		case 9: /*
 					 * Tre av samme
 					 */
 			for (int i = 6; i > 0; i--) {
@@ -176,7 +176,7 @@ public class Poengtabell {
 			}
 			break;
 
-		case 11: /*
+		case 10: /*
 					 * fire av samme
 					 */
 			for (int i = 6; i > 0; i--) {
@@ -194,7 +194,7 @@ public class Poengtabell {
 			}
 			break;
 
-		case 12: /*
+		case 11: /*
 					 * fullt hus
 					 */
 			boolean foundThree = false;
@@ -240,7 +240,7 @@ public class Poengtabell {
 
 			break;
 
-		case 13: /*
+		case 12: /*
 					 * liten straight
 					 */
 			iSort(diceValues);
@@ -256,7 +256,7 @@ public class Poengtabell {
 			}
 			break;
 
-		case 14: /*
+		case 13: /*
 					 * stor straight
 					 */
 			iSort(diceValues);
@@ -272,7 +272,7 @@ public class Poengtabell {
 			}
 			break;
 
-		case 15: /*
+		case 14: /*
 					 * Yatzy
 					 */
 			for (int i = 6; i > 0; i--) {
@@ -290,8 +290,8 @@ public class Poengtabell {
 			}
 			break;
 
-		case 16: /*
-					 * Sjangse
+		case 15: /*
+					 * Sjanse
 					 */
 			for (int i = 0; i < 5; i++) {
 				score += diceValues[i];
@@ -307,7 +307,7 @@ public class Poengtabell {
 	 * 
 	 * @param et array som skal sorteres
 	 */
-	private void iSort(int[] A) {
+	private static void iSort(int[] A) {
 		if (A.length < 2)
 			return;
 
