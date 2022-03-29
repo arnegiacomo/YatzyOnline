@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import no.hvl.dat109.app.Admin;
 import no.hvl.dat109.app.Spill;
 import no.hvl.dat109.utils.InnloggingUtils;
 
@@ -27,15 +28,9 @@ public class BrowseServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO remove test
+			Spill spill = new Spill(new Admin(InnloggingUtils.getInnlogget(request)));
 		
-		//TODO midlertidig
-		HashMap<Integer, Spill> spill = new HashMap<Integer, Spill>();
-		spill.put(0, new Spill(0, null, 0, 0));
-		spill.put(1, new Spill(1, null, 0, 0));
-		spill.put(2, new Spill(2, null, 0, 0));
-		spill.put(3, new Spill(3, null, 0, 0));
-		
-		Spill.setSpill(spill);
 		request.setAttribute("spill", new ArrayList(Spill.getSpill().values()));
 		
 		if (!InnloggingUtils.isInnlogget(request)) {

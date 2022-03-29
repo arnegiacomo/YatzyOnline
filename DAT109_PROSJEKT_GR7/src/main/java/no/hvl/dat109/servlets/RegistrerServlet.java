@@ -43,7 +43,7 @@ public class RegistrerServlet extends HttpServlet {
 		
 		if (Verifisering.verifiser(nyBruker)) {
 			brukerDAO.leggTilBruker(nyBruker);
-			InnloggingUtils.loggInnMedTimeout(request, nyBruker.getEpost());
+			InnloggingUtils.loggInnMedTimeout(request, nyBruker);
 			response.sendRedirect("browse");
 			return;
 		}

@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 
 				// Hvis innlogging stemmer, logg inn!
 
-				InnloggingUtils.loggInnMedTimeout(request, epost);
+				InnloggingUtils.loggInnMedTimeout(request, b);
 
 			}
 

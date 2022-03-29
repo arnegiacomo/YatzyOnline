@@ -25,19 +25,30 @@
 		        		
 		            	<p>Players: ${spill.getSpillere().size()}/6</p>
 		            
-		            	<button type="submit">Join game</button>
 		            
-		            	<button type="submit">Spectate game</button>
+		            
+			            <form action="waiting" method="post">
+			            
+			            	<button type="submit" name="join" value="${spill.getID()}">Join game</button>
+			            	
+			             </form>
+			             
+			             <form action="waiting" method="post">
+			             
+			            	<button type="submit" name="spectate" value="${spill.getID()}">Spectate game</button>
+			            	
+			            </form>
+		            
 		        	</td>
 	        	</tr>
 	        	
         	</c:forEach>
         </table>
 
-		<form action="">
+		<form action="waiting" method="post">
 		
-       		<button type="submit">New game</button>
-       		s
+       		<button type="submit" name="create" value = " noe.... ">New game</button>
+       		
         </form>
         
         

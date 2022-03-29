@@ -1,9 +1,9 @@
 package no.hvl.dat109.app;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Spill {
 
@@ -19,12 +19,16 @@ public class Spill {
 
 	public int runderSpilt;
 	
-	public Spill(int ID, Admin admin, int starttid, int runderSpilt) {
-		this.ID = ID;
+	public Spill(Admin admin) {
+		this.ID = getSpill().size();
 		this.admin = admin;
 		this.spillere = new ArrayList<Spiller>();
-		this.starttid = starttid;
-		this.runderSpilt = runderSpilt;
+		spillere.add(admin);
+		this.starttid = (int) System.currentTimeMillis();
+		this.runderSpilt = 0;
+		
+		admin.setSpill(this);
+		spill.put(ID, this);
 	}
 
 	/**
@@ -33,13 +37,9 @@ public class Spill {
 	 */
 	public static Map<Integer, Spill> getSpill() {
 		if(spill == null) {
-			spill = new HashMap<Integer, Spill>();
+			spill = new ConcurrentHashMap<Integer, Spill>();
 		}
 		return spill;
-	}
-
-	public static void setSpill(Map<Integer, Spill> spill) {
-		Spill.spill = spill;
 	}
 
 	public int getID() {
