@@ -18,7 +18,7 @@ public class Poengtabell {
 	public int sluttresultat() {
 		resultater[17] = 0;
 
-		for (int i = 0; i < resultater.length; i++) {
+		for (int i = 0; i < resultater.length-1; i++) {
 			resultater[17] += resultater[i];
 		}
 

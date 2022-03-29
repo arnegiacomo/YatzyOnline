@@ -5,7 +5,7 @@
 	<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" http-equiv="refresh" content="10">
+<meta charset="UTF-8" http-equiv="refresh" content="15">
 <link rel="stylesheet" href="styles.css">
 <title>Yatzy</title>
 </head>
@@ -15,7 +15,7 @@
         <h2>Yatzy</h2><br>
         <h5> Spill ID : ${spill.getID()} </h5>
         <p>Aktiv Spiller: ${spill.getAktivSpiller().getBrukernavn()}</p>
-        <p>Runder Spilt: ${spill.getRunderSpilt()}</p>
+        <p>RunderNr: ${spill.getRunderSpilt()}</p>
         
         <hr><br>
         
