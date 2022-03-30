@@ -5,7 +5,7 @@
 	<!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" http-equiv="refresh" content="15">
+<meta charset="UTF-8" http-equiv="refresh" content="10">
 <link rel="stylesheet" href="styles.css">
 <title>Yatzy</title>
 </head>
@@ -21,18 +21,19 @@
         <hr><br>
         
        
-        <c:if test="${sessionScope.spiller.getEpost().equals(spill.getAktivSpiller().getEpost())}">
-        
-        <h4>Select the dice you want to reroll (default selected)</h4>
-        
-        <p>Antall kast: ${spiller.getKast()}</p>
+      
         <img src="img/face${spiller.getHand()[0]}.png">
         <img src="img/face${spiller.getHand()[1]}.png">
         <img src="img/face${spiller.getHand()[2]}.png">
         <img src="img/face${spiller.getHand()[3]}.png">
         <img src="img/face${spiller.getHand()[4]}.png">
 
-		
+		<c:if test="${sessionScope.spiller.getEpost().equals(spill.getAktivSpiller().getEpost())}">
+        
+        <h4>Select the dice you want to reroll</h4>
+        
+        <p>Antall kast: ${spiller.getKast()}</p>
+        
 			<form action="game" method="post">
 		
 				  <input type="checkbox" id="t1" name="t1" value="t1" >

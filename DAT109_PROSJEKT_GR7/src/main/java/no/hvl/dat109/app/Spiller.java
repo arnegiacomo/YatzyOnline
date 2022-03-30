@@ -35,10 +35,6 @@ public class Spiller {
 	}
 	
 	public void SpillRunde(boolean[] trill) {
-		if(kast == 0) {
-			terninger = new Terning[] {new Terning(), new Terning(), new Terning(), new Terning(), new Terning()};
-		}
-		
 		for (int i = 0; i < terninger.length; i++) {
 			if(trill[i])
 				terninger[i].roll();
@@ -56,6 +52,10 @@ public class Spiller {
 	}
 	
 	public int[] getHand() {
+		if(kast == 0 && spill.getAktivSpiller().getEpost().equals(this.getEpost())) {
+			terninger = new Terning[] {new Terning(), new Terning(), new Terning(), new Terning(), new Terning()};
+		}
+		
 		
 		int[] tab = new int[terninger.length];
 		for(int i = 0; i < terninger.length; i++) {
