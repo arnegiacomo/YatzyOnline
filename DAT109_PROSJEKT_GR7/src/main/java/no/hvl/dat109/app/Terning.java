@@ -1,5 +1,6 @@
 package no.hvl.dat109.app;
 
+//TODO javadoc
 public class Terning {
 
 	public final int MAX = 6;

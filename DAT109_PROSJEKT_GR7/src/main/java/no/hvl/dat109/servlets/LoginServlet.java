@@ -14,6 +14,13 @@ import no.hvl.dat109.database.Bruker;
 import no.hvl.dat109.database.BrukerDAO;
 import no.hvl.dat109.utils.InnloggingUtils;
 
+/**
+ * Servlet som håndterer
+ * "/DAT109_PROSJEKT_GR7/src/main/webapp/WEB-INF/login.jsp" og eventuell
+ * innlogging, eller feil ved innlogging. Hvis man prøver å aksessere en annen
+ * side og ikke er innlogget blir man sendt hit.
+ *
+ */
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,7 +30,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO ordne innlogginshåndtering på andre sider
+
 		InnloggingUtils.loggUt(request);
 		request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
 

@@ -2,6 +2,7 @@ package no.hvl.dat109.app;
 
 import no.hvl.dat109.database.Bruker;
 
+//TODO javadoc
 public class Tilskuer extends Bruker {
 
 	public Spill spill;

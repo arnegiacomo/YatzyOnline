@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+//TODO javadoc
 @Entity
 @Table(schema = "prosjekt")
 public class Bruker {

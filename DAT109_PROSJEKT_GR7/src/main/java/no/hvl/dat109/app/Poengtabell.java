@@ -1,33 +1,54 @@
 package no.hvl.dat109.app;
 
+/**
+ * Objektklasse for å holde styr på én spillers poeng, i tillegg til noen
+ * statiske metoder som regner ut poeng basert på rundenr og terningkast.
+ */
 public class Poengtabell {
 
 	public int[] resultater;
 
+	/**
+	 * Lager en ny poengtabell med 18 plasser; Enere, toere, treere, firere.....
+	 * sum, og detter alle lik 0
+	 */
 	public Poengtabell() {
 		this.resultater = new int[18];
 	}
-	
+
+	/**
+	 * Legger inn ny score etter 3 kast i poengtabellen.
+	 * @param rundeNr antall runder spilt 
+	 * @param terninger tabell med terninger som har blitt trillet
+	 */
 	public void leggInn(int rundeNr, Terning[] terninger) {
-		if(rundeNr < 7) 
-			resultater[rundeNr-1] = poeng(rundeNr, terninger);
-		if(rundeNr >= 7) 
-			resultater[rundeNr+1] = poeng(rundeNr, terninger);
+		if (rundeNr < 7)
+			resultater[rundeNr - 1] = poeng(rundeNr, terninger);
+		if (rundeNr >= 7)
+			resultater[rundeNr + 1] = poeng(rundeNr, terninger);
 	}
 
+	/**
+	 * Regner ut sluttresultat
+	 * @return sluttresultat / total sum
+	 */
 	public int sluttresultat() {
 		resultater[17] = 0;
 
-		for (int i = 0; i < resultater.length-1; i++) {
+		for (int i = 0; i < resultater.length - 1; i++) {
 			resultater[17] += resultater[i];
 		}
-
-		// Fjerner poengtotalen fra de 6 foerste rundene
+		
+		// Sluttresultat = alle felter over (utenom sum over streken)
 		resultater[17] = resultater[17] - resultater[6];
 
 		return resultater[17];
 	}
 
+	/**
+	 * Regner poengsum over streken
+	 * @return øvre poengsum
+	 */
 	public int ovrepoengsum() {
 
 		resultater[6] = 0;
@@ -39,6 +60,10 @@ public class Poengtabell {
 		return resultater[6];
 	}
 
+	/**
+	 * Regner ut om poeng over streken gir bonus eller ikke.
+	 * @return bonus
+	 */
 	public int bonus() {
 
 		if (ovrepoengsum() >= 42) {
@@ -48,7 +73,7 @@ public class Poengtabell {
 		return resultater[7];
 
 	}
-	
+
 	/**
 	 * Regner ut poengsummen for hver runde ut i fra hvilken runde det er
 	 * 
@@ -70,7 +95,7 @@ public class Poengtabell {
 				if (diceValues[i] == 1) {
 					score += diceValues[i];
 				}
-					
+
 			}
 			break;
 
@@ -149,8 +174,8 @@ public class Poengtabell {
 			break;
 
 		case 9: /*
-					 * Tre av samme
-					 */
+				 * Tre av samme
+				 */
 			for (int i = 6; i > 0; i--) {
 				count = 0;
 				for (int j = 0; j < 5; j++) {
@@ -311,37 +336,37 @@ public class Poengtabell {
 			A[j + 1] = temp;
 		}
 	}
-	
+
 	// Gettere
-	
+
 	public int getEnere() {
 		return resultater[0];
 	}
-	
+
 	public int getToere() {
 		return resultater[1];
 	}
-	
+
 	public int getTrere() {
 		return resultater[2];
 	}
-	
+
 	public int getFirere() {
 		return resultater[3];
 	}
-	
+
 	public int getFemmere() {
 		return resultater[4];
 	}
-	
+
 	public int getSeksere() {
 		return resultater[5];
 	}
-	
+
 	public int get1Par() {
 		return resultater[8];
 	}
-	
+
 	public int get2Par() {
 		return resultater[9];
 	}
@@ -349,29 +374,29 @@ public class Poengtabell {
 	public int get3Like() {
 		return resultater[10];
 	}
-	
+
 	public int get4Like() {
 		return resultater[11];
 	}
-	
+
 	public int getHus() {
 		return resultater[12];
 	}
-	
+
 	public int getLiten() {
 		return resultater[13];
 	}
-	
+
 	public int getStor() {
 		return resultater[14];
 	}
-	
+
 	public int getYatzy() {
 		return resultater[15];
 	}
-	
+
 	public int getSjanse() {
 		return resultater[16];
 	}
-	
+
 }
