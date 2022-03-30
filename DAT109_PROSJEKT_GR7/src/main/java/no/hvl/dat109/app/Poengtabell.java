@@ -209,7 +209,7 @@ public class Poengtabell {
 			}
 			break;
 
-		case 11: /*
+		case 13: /*
 					 * fullt hus
 					 */
 			boolean foundThree = false;
@@ -255,7 +255,7 @@ public class Poengtabell {
 
 			break;
 
-		case 12: /*
+		case 11: /*
 					 * liten straight
 					 */
 			iSort(diceValues);
@@ -271,7 +271,7 @@ public class Poengtabell {
 			}
 			break;
 
-		case 13: /*
+		case 12: /*
 					 * stor straight
 					 */
 			iSort(diceValues);
