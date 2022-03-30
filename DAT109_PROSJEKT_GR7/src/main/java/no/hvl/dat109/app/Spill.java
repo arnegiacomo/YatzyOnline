@@ -54,6 +54,7 @@ public class Spill {
 	 * Håndterer hvem sin runde det er
 	 */
 	public void spillRunde() {
+		
 		if (runderSpilt > 0) {
 			Spiller winner = getSpillere().get(0);
 
@@ -72,6 +73,11 @@ public class Spill {
 		}
 
 		aktivSpiller = getSpillere().get(spillerIndex);
+		
+		if(runderSpilt > 15) {
+			aktivSpiller = null;
+			// TODO hva skal skje når man vinner?
+		}
 	}
 
 	public String winner() {
