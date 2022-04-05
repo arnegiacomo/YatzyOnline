@@ -20,33 +20,49 @@
         
         <hr><br>
         
+        <c:if test="${!spill.isFerdig()}">
        
       
-        <img src="img/face${spiller.getHand()[0]}.png">
-        <img src="img/face${spiller.getHand()[1]}.png">
-        <img src="img/face${spiller.getHand()[2]}.png">
-        <img src="img/face${spiller.getHand()[3]}.png">
-        <img src="img/face${spiller.getHand()[4]}.png">
-
-		<c:if test="${sessionScope.spiller.getEpost().equals(spill.getAktivSpiller().getEpost())}">
-        
-        <h4>Select the dice you want to reroll</h4>
-        
-        <p>Antall kast: ${spiller.getKast()}</p>
-        
-			<form action="game" method="post">
-		
-				  <input type="checkbox" id="t1" name="t1" value="t1" >
-				  <input type="checkbox" id="t2" name="t2" value="t2" >
-				  <input type="checkbox" id="t3" name="t3" value="t3" >
-				  <input type="checkbox" id="t4" name="t4" value="t4" >
-				  <input type="checkbox" id="t5" name="t5" value="t5" >
-				  
-				  <br>
-				  
-				  <button type="submit">Roll Dice</button>
-			</form>
+	        <img src="img/face${spiller.getHand()[0]}.png">
+	        <img src="img/face${spiller.getHand()[1]}.png">
+	        <img src="img/face${spiller.getHand()[2]}.png">
+	        <img src="img/face${spiller.getHand()[3]}.png">
+	        <img src="img/face${spiller.getHand()[4]}.png">
+	
+			<c:if test="${sessionScope.spiller.getEpost().equals(spill.getAktivSpiller().getEpost())}">
+	        
+	        <h4>Select the dice you want to reroll</h4>
+	        
+	        <p>Antall kast: ${spiller.getKast()}</p>
+	        
+				<form action="game" method="post">
+			
+					  <input type="checkbox" id="t1" name="t1" value="t1" >
+					  <input type="checkbox" id="t2" name="t2" value="t2" >
+					  <input type="checkbox" id="t3" name="t3" value="t3" >
+					  <input type="checkbox" id="t4" name="t4" value="t4" >
+					  <input type="checkbox" id="t5" name="t5" value="t5" >
+					  
+					  <br>
+					  
+					  <button type="submit">Roll Dice</button>
+				</form>
+			</c:if>
+			
 		</c:if>
+		
+		<c:if test="${spill.isFerdig()}">
+			<h3>Spillet er ferdig, ${spill.winner()} har vunnet! </h3>
+			
+			<form action="browse" method="get">
+	        
+	        <button type="submit" name="leave" value="leave">Browse</button><br>
+        
+        </form>
+		
+		</c:if>
+		
+		
         
         
         <table width="482">

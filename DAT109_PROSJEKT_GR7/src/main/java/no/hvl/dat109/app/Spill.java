@@ -17,6 +17,7 @@ public class Spill {
 	public Map<String, Spiller> spillere;
 
 	private boolean startet = false;
+	private boolean ferdig = false;
 	private boolean slettes = false;
 	public int runderSpilt = -1;
 
@@ -77,6 +78,7 @@ public class Spill {
 		if(runderSpilt > 15) {
 			aktivSpiller = null;
 			// TODO hva skal skje når man vinner?
+			ferdig = true;
 		}
 	}
 
@@ -250,6 +252,14 @@ public class Spill {
 				spill.put(s.getID(), s);
 		});
 
+	}
+	
+	public boolean isFerdig() {
+		return ferdig;
+	}
+
+	public void setFerdig(boolean ferdig) {
+		this.ferdig = ferdig;
 	}
 
 	@Override

@@ -287,7 +287,7 @@ public class Poengtabell {
 			}
 			break;
 
-		case 14: /*
+		case 15: /*
 					 * Yatzy
 					 */
 			for (int i = 6; i > 0; i--) {
@@ -305,7 +305,7 @@ public class Poengtabell {
 			}
 			break;
 
-		case 15: /*
+		case 14: /*
 					 * Sjanse
 					 */
 			for (int i = 0; i < 5; i++) {
@@ -380,23 +380,23 @@ public class Poengtabell {
 	}
 
 	public int getHus() {
-		return resultater[12];
-	}
-
-	public int getLiten() {
-		return resultater[13];
-	}
-
-	public int getStor() {
 		return resultater[14];
 	}
 
+	public int getLiten() {
+		return resultater[12];
+	}
+
+	public int getStor() {
+		return resultater[13];
+	}
+
 	public int getYatzy() {
-		return resultater[15];
+		return resultater[16];
 	}
 
 	public int getSjanse() {
-		return resultater[16];
+		return resultater[15];
 	}
 
 }

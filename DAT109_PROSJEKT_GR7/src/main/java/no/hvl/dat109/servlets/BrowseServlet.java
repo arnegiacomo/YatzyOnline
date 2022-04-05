@@ -9,8 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import no.hvl.dat109.app.Spill;
+import no.hvl.dat109.app.Spiller;
 import no.hvl.dat109.utils.InnloggingUtils;
 
 //TODO javadoc
@@ -24,6 +26,21 @@ public class BrowseServlet extends HttpServlet {
 			request.setAttribute("FEILMELDING", "Du har blitt logget ut!");
 			request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
 			return;
+		}
+		
+		String create = request.getParameter("leave");
+		HttpSession session = request.getSession(false);
+		
+		if(create != null && (Spiller) session.getAttribute("spiller") != null) {
+		
+			Spiller spiller = (Spiller) session.getAttribute("spiller");
+			
+			spiller.ForlatSpill();
+			
+			session.setAttribute("spill", null);
+			session.setAttribute("spiller", null);
+			session.setAttribute("admin", null);
+		
 		}
 
 		List<Spill> allespill = Spill.getSpill();
