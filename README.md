@@ -1,6 +1,8 @@
 # YatzyOnline
 School project: Web based multiplayer Yatzy in Java. Using servlets and JPA 
 
+Demo - https://www.youtube.com/watch?v=ErODrz_rQds
+
 Oppgaven: 
 Visjonen til kunden 
 I påsken trekker vi ofte frem gamle gode spill, og påsken 
